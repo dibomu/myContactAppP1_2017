@@ -78,6 +78,7 @@
         android:text="ViewData"
         android:id="@+id/Button_View"
         android:layout_alignBottom="@+id/button_add"
-        android:layout_alignEnd="@+id/editText_Address" />
+        android:layout_alignEnd="@+id/editText_Address"
+        android:onClick="viewData" />
 
 </RelativeLayout>

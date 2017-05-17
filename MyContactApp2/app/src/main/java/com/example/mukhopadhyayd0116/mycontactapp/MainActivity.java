@@ -1,6 +1,7 @@
 package com.example.mukhopadhyayd0116.mycontactapp;
 
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -57,6 +58,11 @@ public class MainActivity extends AppCompatActivity {
         }
         StringBuffer buffer= new StringBuffer();
 
+        for ( int i =0; i<res.getCount();i++){
+            buffer.append(res.getString(i));
+            res.moveToNext();
+        }
+
         //setup loop with cursor movetonext method
         // append each col to buffer
         //use the getstring method
@@ -65,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showMessage(String title, String message) {
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setCancelable(true);//cancel using back button
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+
 
     }
 
