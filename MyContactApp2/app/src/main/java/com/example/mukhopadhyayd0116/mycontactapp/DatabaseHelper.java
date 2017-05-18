@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by mukhopadhyayd0116 on 5/11/2017.
@@ -18,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4="ADDRESS";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null,3 );
     }
 
     @Override
@@ -45,8 +46,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getAllData(){
+
         SQLiteDatabase db= this.getWritableDatabase();
-        Cursor res= db.rawQuery("select * from"+TABLE_NAME,null);
+        Cursor res= db.rawQuery("select * from " + TABLE_NAME , null );
+        Log.d("MyContact","GetAllDataWorking");
+
         return res;
     }
 }

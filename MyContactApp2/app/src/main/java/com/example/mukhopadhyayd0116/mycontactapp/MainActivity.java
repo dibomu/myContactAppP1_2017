@@ -47,20 +47,31 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void viewData(View v){
+
+
         Cursor res= myDb.getAllData();
+
+
+        res.moveToFirst();
         if(res.getCount()== 0){
             showMessage("Error", "No data found in database");
         //put a logd message and toast
+            Log.d("MyContact", " Got to view data" );
             Log.d("Error","No data found in database");
+
 
         return;
 
         }
         StringBuffer buffer= new StringBuffer();
 
-        for ( int i =0; i<res.getCount();i++){
+        for ( int i =0; i<res.getColumnCount();i++){
+
             buffer.append(res.getString(i));
+
             res.moveToNext();
+            Log.d("MyContact","test"+ res.getCount());
+
         }
 
         //setup loop with cursor movetonext method
