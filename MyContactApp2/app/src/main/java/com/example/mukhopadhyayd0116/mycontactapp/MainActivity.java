@@ -65,22 +65,40 @@ public class MainActivity extends AppCompatActivity {
         }
         StringBuffer buffer= new StringBuffer();
 
+       while(!(res.isLast())){
         for ( int i =0; i<res.getColumnCount();i++){
+            if (i==0){
+                buffer.append("ID:");
 
+            }
+            if(i==1){
+                buffer.append("Name:");
+
+            }
+            if(i==2){
+                buffer.append("Age:");
+
+            }
+            if(i==3){
+                buffer.append("Address:");
+            }
             buffer.append(res.getString(i));
+            buffer.append("\n");
 
-            res.moveToNext();
             Log.d("MyContact","test"+ res.getCount());
 
         }
-
+        res.moveToNext();
         //setup loop with cursor movetonext method
         // append each col to buffer
         //use the getstring method
         showMessage("Data", buffer.toString());
 
     }
+    }
+    public void searchContact ( View v){
 
+    }
     private void showMessage(String title, String message) {
         AlertDialog.Builder builder= new AlertDialog.Builder(this);
         builder.setCancelable(true);//cancel using back button

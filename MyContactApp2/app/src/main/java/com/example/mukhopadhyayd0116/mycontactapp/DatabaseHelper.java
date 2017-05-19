@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_4="ADDRESS";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null,3 );
+        super(context, DATABASE_NAME, null, 4);
     }
 
     @Override

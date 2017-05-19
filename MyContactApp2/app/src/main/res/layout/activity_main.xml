@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.mukhopadhyayd0116.mycontactapp.MainActivity">
+    tools:context="com.example.mukhopadhyayd0116.mycontactapp.MainActivity"
+    android:onClick="searchContact">
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,10 +33,10 @@
         android:layout_height="wrap_content"
         android:text="AddData"
         android:id="@+id/button_add"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/textView"
         android:layout_marginBottom="52dp"
-        android:onClick="addData" />
+        android:onClick="addData"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/editText_Address" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -80,5 +81,31 @@
         android:layout_alignBottom="@+id/button_add"
         android:layout_alignEnd="@+id/editText_Address"
         android:onClick="viewData" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Search:"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editText_Address"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="73dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Search"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignEnd="@+id/editText_Address"
+        android:layout_toEndOf="@+id/textView4" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/button"
+        android:layout_alignTop="@+id/Button_View"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
