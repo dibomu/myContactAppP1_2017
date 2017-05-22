@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
         }
         StringBuffer buffer= new StringBuffer();
 
-       while(!(res.isLast())){
+        res.moveToFirst();
+       while(!(res.isAfterLast())){
         for ( int i =0; i<res.getColumnCount();i++){
             if (i==0){
                 buffer.append("ID:");
