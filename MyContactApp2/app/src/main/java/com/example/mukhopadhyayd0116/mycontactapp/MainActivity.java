@@ -1,5 +1,6 @@
 package com.example.mukhopadhyayd0116.mycontactapp;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,7 +17,9 @@ public class MainActivity extends AppCompatActivity {
     EditText editName;
     EditText editAge;
     EditText editAddress;
+    EditText editSearch;
     Button btnAddData;
+    String types[]= {"ID","NAME","AGE","ADDRESS"};
 
 
 
@@ -32,16 +36,32 @@ public class MainActivity extends AppCompatActivity {
         editName = (EditText) findViewById(R.id.editText_name);
         editAge = (EditText) findViewById(R.id.editText_Age);
         editAddress = (EditText) findViewById(R.id.editText_Address);
+        editSearch= (EditText) findViewById(R.id.Search);
+
+
     }
     public void addData(View v){
         boolean isInserted = myDb.insertData(editName.getText().toString(), editAge.getText().toString(),editAddress.getText().toString());
 
         if(isInserted==true){
             //create toast message to user indicating data inserted correctly
+            Context context = getApplicationContext();
+            CharSequence text = "data insertion successfull";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
             Log.d("MyContact","Data Insertion successful");
         }
         else{
             //create toast message to user indicating data inserted correctly
+            Context context = getApplicationContext();
+            CharSequence text = "data insertion not successfull";
+            int duration = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+            Log.d("MyContact","Data Insertion successful");
             Log.d("MyContact","Data Insertion successful");
 
         }
@@ -96,8 +116,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
     }
-    public void searchContact ( View v){
+    public void searchContact ( View v ){
 
+        Cursor res = myDb.getAllData();
+        StringBuffer buffer = new StringBuffer();
+        StringBuffer buffer2 = new StringBuffer();
+
+        while(res.moveToNext()) {
+            for (int i = 0; i < res.getCount(); i++) {
+                if (res.getString(1).equals(editSearch.getText().toString())) {
+                       if(buffer2.indexOf(types[0] + res.getString(0) + "\n") == -1) {
+
+
+                        for (int j = 0; j < 4;j++) {
+
+                           if(j > 0) {buffer.append(types[j] + " : " + res.getString(j) + "\n");}
+                            buffer2.append(types[j] + res.getString(j) + "\n");
+                        }
+                        buffer.append("\n");
+                    }
+                }
+            }
+        }
+
+        if (buffer.toString().equals("")) {
+            showMessage("Did not work ", " ");
+
+        }
+        else {
+            showMessage("Result: ", buffer.toString());
+        }
+
+        editSearch.setText("");
     }
     private void showMessage(String title, String message) {
         AlertDialog.Builder builder= new AlertDialog.Builder(this);
